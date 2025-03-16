@@ -1,4 +1,7 @@
-abstract class Car2 {
+interface Refuelable {
+    void refuel();
+}
+abstract class Car2 implements Refuelable {
     private String model;
     private int year;
     private int price;
@@ -12,10 +15,6 @@ abstract class Car2 {
     public String getInfo() {
         return model + " (Năm SX: " + year + ", Giá: $" + price + ")";
     }
-}
-
-interface Refuelable {
-    void refuel();
 }
 class ElectricCar extends Car2 implements Refuelable {
     public ElectricCar(String model, int year, int price) {
@@ -72,7 +71,7 @@ class Garage  {
     }
     public void fullRefuel() {
         for (int i = 0; i < cars.length; i++) {
-            ((Refuelable) cars[i]).refuel();
+            cars[i].refuel();
         }
     }
 }

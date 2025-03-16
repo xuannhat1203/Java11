@@ -1,4 +1,7 @@
-abstract class Employees {
+interface AttendMeeting {
+    void attendMeeting();
+}
+abstract class Employees implements AttendMeeting {
     private String name;
     private double salary;
 
@@ -20,9 +23,7 @@ abstract class Employees {
     }
 }
 
-interface AttendMeeting {
-    void attendMeeting();
-}
+
 
 class Manager extends Employees implements AttendMeeting {
     public Manager(String name, double salary) {
@@ -56,6 +57,9 @@ class Developer extends Employees {
     public void takeVacation() {
         System.out.println("Lap trinh vien " + getName() + " ( Luong: " + getSalary() + ") " + "dang di nghi tai Phap");
     }
+
+    @Override
+    public void attendMeeting() {}
 }
 
 class Company {
@@ -68,9 +72,7 @@ class Company {
     public void holdMeeting() {
         System.out.println("Công ty đang tổ chức cuộc họp...");
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i] instanceof AttendMeeting) {
-                ((AttendMeeting) employees[i]).attendMeeting();
-            }
+            employees[i].attendMeeting();
         }
     }
     public void display(){
